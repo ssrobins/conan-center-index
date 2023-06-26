@@ -106,29 +106,29 @@ class SDLMixerConan(ConanFile):
     def generate(self):
         tc = CMakeToolchain(self)
         tc.variables["SDL_MIXER_SRC_DIR"] = os.path.join(self.source_folder).replace("\\", "/")
-        tc.preprocessor_definitions["CMD"] = self.options.cmd
-        tc.preprocessor_definitions["WAV"] = self.options.wav
-        tc.preprocessor_definitions["FLAC"] = self.options.flac
-        tc.preprocessor_definitions["MP3_MPG123"] = self.options.mpg123
-        tc.preprocessor_definitions["MP3_MAD"] = self.options.mad
-        tc.preprocessor_definitions["OGG"] = self.options.ogg
-        tc.preprocessor_definitions["OPUS"] = self.options.opus
-        tc.preprocessor_definitions["MOD_MIKMOD"] = self.options.mikmod
-        tc.preprocessor_definitions["MOD_MODPLUG"] = self.options.modplug
-        tc.preprocessor_definitions["MID_FLUIDSYNTH"] = self.options.fluidsynth
+        tc.variables["CMD"] = self.options.cmd
+        tc.variables["WAV"] = self.options.wav
+        tc.variables["FLAC"] = self.options.flac
+        tc.variables["MP3_MPG123"] = self.options.mpg123
+        tc.variables["MP3_MAD"] = self.options.mad
+        tc.variables["OGG"] = self.options.ogg
+        tc.variables["OPUS"] = self.options.opus
+        tc.variables["MOD_MIKMOD"] = self.options.mikmod
+        tc.variables["MOD_MODPLUG"] = self.options.modplug
+        tc.variables["MID_FLUIDSYNTH"] = self.options.fluidsynth
         if self.settings.os == "Linux":
-            tc.preprocessor_definitions["MID_TINYMIDI"] = self.options.tinymidi
-            tc.preprocessor_definitions["MID_NATIVE"] = False
+            tc.variables["MID_TINYMIDI"] = self.options.tinymidi
+            tc.variables["MID_NATIVE"] = False
         else:
-            tc.preprocessor_definitions["MID_TINYMIDI"] = False
-            tc.preprocessor_definitions["MID_NATIVE"] = self.options.nativemidi
+            tc.variables["MID_TINYMIDI"] = False
+            tc.variables["MID_NATIVE"] = self.options.nativemidi
 
-        tc.preprocessor_definitions["FLAC_DYNAMIC"] = self.dependencies["flac"].options.shared if self.options.flac else False
-        tc.preprocessor_definitions["MP3_MPG123_DYNAMIC"] = self.dependencies["mpg123"].options.shared if self.options.mpg123 else False
-        tc.preprocessor_definitions["OGG_DYNAMIC"] = self.dependencies["ogg"].options.shared if self.options.ogg else False
-        tc.preprocessor_definitions["OPUS_DYNAMIC"] = self.dependencies["opus"].options.shared if self.options.opus else False
-        tc.preprocessor_definitions["MOD_MIKMOD_DYNAMIC"] = self.dependencies["libmikmod"].options.shared if self.options.mikmod else False
-        tc.preprocessor_definitions["MOD_MODPLUG_DYNAMIC"] = self.dependencies["libmodplug"].options.shared if self.options.modplug else False
+        tc.variables["FLAC_DYNAMIC"] = self.dependencies["flac"].options.shared if self.options.flac else False
+        tc.variables["MP3_MPG123_DYNAMIC"] = self.dependencies["mpg123"].options.shared if self.options.mpg123 else False
+        tc.variables["OGG_DYNAMIC"] = self.dependencies["ogg"].options.shared if self.options.ogg else False
+        tc.variables["OPUS_DYNAMIC"] = self.dependencies["opus"].options.shared if self.options.opus else False
+        tc.variables["MOD_MIKMOD_DYNAMIC"] = self.dependencies["libmikmod"].options.shared if self.options.mikmod else False
+        tc.variables["MOD_MODPLUG_DYNAMIC"] = self.dependencies["libmodplug"].options.shared if self.options.modplug else False
         tc.generate()
 
     def build(self):
