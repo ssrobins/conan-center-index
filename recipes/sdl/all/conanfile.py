@@ -7,6 +7,7 @@ from conan.tools.build import cross_building
 from conan.tools.scm import Version
 from conan.tools.cmake import CMake, CMakeToolchain, cmake_layout
 from conan.tools.env import Environment
+from conan.tools.system.package_manager import Apt
 
 import os
 
@@ -144,12 +145,17 @@ class SDLConan(ConanFile):
         self.settings.rm_safe("compiler.libcxx")
         self.settings.rm_safe("compiler.cppstd")
 
+    def system_requirements(self):
+        if self.settings.os == "Linux":
+            Apt(self).install(["libasound2-dev"],
+                update=True, check=True)
+
     def requirements(self):
         if self.options.get_safe("iconv", False):
             self.requires("libiconv/1.17")
         if self.settings.os == "Linux":
-            if self.options.alsa:
-                self.requires("libalsa/1.2.10")
+            #if self.options.alsa:
+            #    self.requires("libalsa/1.2.10")
             if self.options.pulse:
                 self.requires("pulseaudio/14.2")
             if self.options.opengl:
