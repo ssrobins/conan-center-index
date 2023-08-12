@@ -254,7 +254,7 @@ class SDLConan(ConanFile):
 
             tc.variables["SDL_ALSA"] = self.options.alsa
             if self.options.alsa:
-                tc.variables["SDL_ALSA_SHARED"] = self.dependencies["libalsa"].options.shared
+                #tc.variables["SDL_ALSA_SHARED"] = self.dependencies["libalsa"].options.shared
                 tc.variables["HAVE_ASOUNDLIB_H"] = True
                 tc.variables["HAVE_LIBASOUND"] = True
             tc.variables["SDL_JACK"] = self.options.jack
