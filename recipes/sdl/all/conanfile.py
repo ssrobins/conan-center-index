@@ -382,8 +382,8 @@ class SDLConan(ConanFile):
             self.cpp_info.components["libsdl2"].requires.append("libiconv::libiconv")
         if self.settings.os == "Linux":
             self.cpp_info.components["libsdl2"].system_libs = ["dl", "rt", "pthread"]
-            if self.options.alsa:
-                self.cpp_info.components["libsdl2"].requires.append("libalsa::libalsa")
+            #if self.options.alsa:
+            #    self.cpp_info.components["libsdl2"].requires.append("libalsa::libalsa")
             if self.options.pulse:
                 self.cpp_info.components["libsdl2"].requires.append("pulseaudio::pulseaudio")
             if self.options.opengl:
