@@ -150,6 +150,8 @@ class SDLConan(ConanFile):
         if self.options.get_safe("iconv", False):
             self.requires("libiconv/1.17")
         if self.settings.os == "Linux":
+            # Maybe I can switch back to this when these ideas?
+            # https://github.com/conan-io/conan-center-index/issues/17101
             #if self.options.alsa:
             #    self.requires("libalsa/1.2.10")
             if self.options.pulse:
