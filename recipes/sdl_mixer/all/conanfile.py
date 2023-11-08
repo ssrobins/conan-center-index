@@ -73,7 +73,7 @@ class SDLMixerConan(ConanFile):
         self.settings.rm_safe("compiler.libcxx")
 
     def requirements(self):
-        self.requires("sdl/2.26.5")
+        self.requires("sdl/2.28.3")
         if self.options.flac:
             self.requires("flac/1.3.3")
         if self.options.mpg123:
